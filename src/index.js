@@ -5,8 +5,7 @@ import Login from './views/Login/Login';
 import Navbar from './components/navbar/Navbar';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-
-const isLoggedIn = false;
+import AuthService from './services/AuthService';
 
 const authenticatedRoutes = (
   <>
@@ -32,7 +31,11 @@ const unauthenticatedRoutes = (
   </>
 );
 
-ReactDOM.render((isLoggedIn ? authenticatedRoutes : unauthenticatedRoutes),document.getElementById('root'));
+const authService = new AuthService();
+
+authService.isAuthenticated().then( isAuthenticated => {
+  ReactDOM.render((isAuthenticated ? authenticatedRoutes : unauthenticatedRoutes),document.getElementById('root'));
+})
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.

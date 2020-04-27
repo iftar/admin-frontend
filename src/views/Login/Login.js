@@ -1,12 +1,14 @@
 import React from 'react';
 import './Login.css';
-
-const BASE_URL = 'https://share-iftar-staging.herokuapp.com/api';
+import AuthService from '../../services/AuthService';
+import StorageService from '../../services/StorageService';
 
 class Login extends React.Component {
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.authService = new AuthService();
+    this.storageService = new StorageService();
   }
 
   async handleSubmit(event) {
@@ -16,15 +18,13 @@ class Login extends React.Component {
       password: event.target.password.value
     };
 
-    console.log(await this.loginRequest(data));
-    console.log("fsd");
-  }
-
-  async loginRequest(data) {
-    return await fetch(`${BASE_URL}/login`, {
-      method: 'POST',
-      body: JSON.stringify(data),
-    });
+    let request = await this.authService.login(data);
+    if (request.data.status === "success") {
+      this.storageService.set("USER_TOKEN", request.data.data.token);
+      window.location.href = "/";
+    } else {
+      alert('Login failed');
+    }
   }
 
   render() {
