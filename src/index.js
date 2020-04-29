@@ -34,7 +34,7 @@ const unauthenticatedRoutes = (
 const authService = new AuthService();
 
 authService.isAuthenticated().then( isAuthenticated => {
-  ReactDOM.render((isAuthenticated ? authenticatedRoutes : unauthenticatedRoutes),document.getElementById('root'));
+  ReactDOM.render((isAuthenticated ? authenticatedRoutes : unauthenticatedRoutes), document.getElementById('root'));
 })
 
 // If you want your app to work offline and load faster, you can change
