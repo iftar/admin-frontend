@@ -13,7 +13,7 @@ class AuthService {
     if (!token) return false;
 
     let result = await this.getUser();
-    if (result.data.status === "success" && result.data.user.type == "admin") return true;
+    if (result.data.status === "success" && result.data.user.type === "admin") return true;
 
     return false;
   }
