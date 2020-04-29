@@ -1,14 +1,12 @@
 import React from 'react';
 import './Login.css';
 import AuthService from '../../services/AuthService';
-import StorageService from '../../services/StorageService';
 
 class Login extends React.Component {
   constructor() {
     super();
     this.handleSubmit = this.handleSubmit.bind(this);
     this.authService = new AuthService();
-    this.storageService = new StorageService();
   }
 
   async handleSubmit(event) {
@@ -19,8 +17,9 @@ class Login extends React.Component {
     };
 
     let request = await this.authService.login(data);
-    if (request.data.status === "success") {
-      this.storageService.set("USER_TOKEN", request.data.data.token);
+
+    if (request.data.status === "success" && request.data.data.type === "admin") {
+      this.authService.setUserToken(request.data.data.token);
       window.location.href = "/";
     } else {
       alert('Login failed');
