@@ -2,6 +2,7 @@ import axios from 'axios';
 import StorageService from './StorageService';
 
 const BASE_URL = 'https://share-iftar-staging.herokuapp.com/api';
+//const BASE_URL = 'http://localhost:8000/api'; // for local
 
 class AuthService {
   constructor() {
@@ -13,7 +14,9 @@ class AuthService {
     if (!token) return false;
 
     let result = await this.getUser();
-    if (result.data.status === "success" && result.data.data.user.type === "admin") return true;
+    if (result &&
+        result.data.status === "success" && 
+        result.data.data.user.type === "admin") return true;
 
     return false;
   }
