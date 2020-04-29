@@ -17,8 +17,9 @@ class Login extends React.Component {
     };
 
     let request = await this.authService.login(data);
+    let user = request.data.status === "success" ? request.data.data.user : null;
 
-    if (request.data.status === "success" && request.data.data.type === "admin") {
+    if (user && user.type === "admin") {
       this.authService.setUserToken(request.data.data.token);
       window.location.href = "/";
     } else {
