@@ -14,7 +14,7 @@ class TodaysOrders extends React.Component {
   getTodaysOrders() {
     return this.orderService.getTodaysOrders().then( result => {
       this.setState(() => ({
-        orders: result.data.data.orders.data
+        orders: result.data.data.orders
       }));
     });
   }
@@ -27,8 +27,8 @@ class TodaysOrders extends React.Component {
           <td>{order.first_name}</td>
           <td>{order.last_name}</td>
           <td>{order.quantity}</td>
-          <td>{order.collection_point_id}</td>
-          <td>{order.collection_point_time_slot_id}</td>
+          <td>{order.collection_point.name}</td>
+          <td>{order.collection_point_time_slot.start_time}</td>
         </tr>
       );
     });
