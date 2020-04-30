@@ -1,8 +1,6 @@
 import axios from 'axios';
 import StorageService from './StorageService';
-
-const BASE_URL = 'https://share-iftar-staging.herokuapp.com/api';
-//const BASE_URL = 'http://localhost:8000/api'; // for local
+import {BASE_URL} from '../utils/constants';
 
 class AuthService {
   constructor() {

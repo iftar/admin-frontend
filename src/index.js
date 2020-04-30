@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import Login from './views/Login/Login';
 import Navbar from './components/navbar/Navbar';
 import * as serviceWorker from './serviceWorker';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import AuthService from './services/AuthService';
+
+// Views
+import Login from './views/Login/Login';
+import TodaysOrders from './views/TodaysOrders/TodaysOrders';
 
 const authenticatedRoutes = (
   <>
@@ -14,7 +17,7 @@ const authenticatedRoutes = (
     <Router>
       <Switch>
         <Route path="/">
-          <h1>Logged in</h1>
+          <TodaysOrders />
         </Route>
       </Switch>
     </Router>
