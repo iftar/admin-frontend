@@ -5,15 +5,57 @@ class TodaysOrders extends React.Component {
   constructor() {
     super();
     this.orderService = new OrderService();
+    this.state = {
+      orders: []
+    };
+    this.getTodaysOrders();
   }
 
   getTodaysOrders() {
-    return this.orderService.getTodaysOrders();
+    return this.orderService.getTodaysOrders().then( result => {
+      this.setState(() => ({
+        orders: result.data.data.orders.data
+      }));
+    });
+  }
+
+  getOrderRows() {
+    return this.state.orders.map( order => {
+      return (
+        <tr key={`Order-${order.id}`}>
+          <th scope="row">{order.id}</th>
+          <td>{order.first_name}</td>
+          <td>{order.last_name}</td>
+          <td>{order.quantity}</td>
+          <td>{order.collection_point_id}</td>
+          <td>{order.collection_point_time_slot_id}</td>
+        </tr>
+      );
+    });
   }
 
   render() {
+    let ordersRows = this.getOrderRows();
+
     return (<div className="TodaysOrders">
       <h1>Today's orders</h1>
+      <div className="table-responsive">
+        <table className="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Collection point</th>
+              <th scope="col">Pick up time</th>
+            </tr>
+          </thead>
+          <tbody>
+            {ordersRows}
+          </tbody>
+        </table>
+      </div>
     </div>);
   }
 }
