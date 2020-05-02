@@ -24,12 +24,13 @@ class TodaysOrders extends React.Component {
       return (
         <tr key={`Order-${order.id}`}>
           <th scope="row">{order.id}</th>
+          <td>{order.collection_point.name}</td>
+          <td>{order.quantity}</td>
+          <td>{order.collection_point_time_slot.start_time}</td>
           <td>{order.first_name}</td>
           <td>{order.last_name}</td>
-          <td>{order.phone}</td>
-          <td>{order.quantity}</td>
-          <td>{order.collection_point.name}</td>
-          <td>{order.collection_point_time_slot.start_time}</td>
+          <td><a href={`tel:${order.phone}`}>{order.phone}</a></td>
+          <td><a href={`mailto:${order.email}`}>{order.email}</a></td>
           <td>{order.status}</td>
           <td>{order.notes}</td>
         </tr>
@@ -47,12 +48,13 @@ class TodaysOrders extends React.Component {
           <thead>
             <tr>
               <th scope="col">#</th>
+              <th scope="col">Collection point</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Pick up time</th>
               <th scope="col">First</th>
               <th scope="col">Last</th>
               <th scope="col">Phone number</th>
-              <th scope="col">Quantity</th>
-              <th scope="col">Collection point</th>
-              <th scope="col">Pick up time</th>
+              <th scope="col">Email</th>
               <th scope="col">Status</th>
               <th scope="col">Notes</th>
             </tr>

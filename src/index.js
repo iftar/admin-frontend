@@ -13,7 +13,7 @@ import TodaysOrders from './views/TodaysOrders/TodaysOrders';
 const authenticatedRoutes = (
   <>
   <Navbar />
-  <div className="container pt-4">
+  <div className="pl-4 pr-4 pt-4 pb-4">
     <Router>
       <Switch>
         <Route path="/">
@@ -28,7 +28,7 @@ const authenticatedRoutes = (
 const unauthenticatedRoutes = (
   <>
   <Navbar />
-  <div className="container pt-4">
+  <div className="pl-4 pr-4 pt-4 pb-4">
     <Login />
   </div>
   </>
