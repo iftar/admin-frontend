@@ -26,9 +26,12 @@ class TodaysOrders extends React.Component {
           <th scope="row">{order.id}</th>
           <td>{order.first_name}</td>
           <td>{order.last_name}</td>
+          <td>{order.phone_number}</td>
           <td>{order.quantity}</td>
           <td>{order.collection_point.name}</td>
           <td>{order.collection_point_time_slot.start_time}</td>
+          <td>{order.status}</td>
+          <td>{order.notes}</td>
         </tr>
       );
     });
@@ -40,15 +43,18 @@ class TodaysOrders extends React.Component {
     return (<div className="TodaysOrders">
       <h1>Today's orders</h1>
       <div className="table-responsive">
-        <table className="table table-striped">
+        <table className="table table-striped table-bordered">
           <thead>
             <tr>
               <th scope="col">#</th>
               <th scope="col">First</th>
               <th scope="col">Last</th>
+              <th scope="col">Phone number</th>
               <th scope="col">Quantity</th>
               <th scope="col">Collection point</th>
               <th scope="col">Pick up time</th>
+              <th scope="col">Status</th>
+              <th scope="col">Notes</th>
             </tr>
           </thead>
           <tbody>
