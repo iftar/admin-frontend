@@ -26,7 +26,7 @@ class TodaysOrders extends React.Component {
           <th scope="row">{order.id}</th>
           <td>{order.first_name}</td>
           <td>{order.last_name}</td>
-          <td>{order.phone_number}</td>
+          <td>{order.phone}</td>
           <td>{order.quantity}</td>
           <td>{order.collection_point.name}</td>
           <td>{order.collection_point_time_slot.start_time}</td>
