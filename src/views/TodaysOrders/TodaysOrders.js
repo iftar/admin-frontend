@@ -31,6 +31,7 @@ class TodaysOrders extends React.Component {
           <td>{order.last_name}</td>
           <td><a href={`tel:${order.phone}`}>{order.phone}</a></td>
           <td><a href={`mailto:${order.email}`}>{order.email}</a></td>
+          <td>{order.collection_point_time_slot.type == "user_pickup" ? "Collection" : "Delivery"}</td>
           <td>{order.status}</td>
           <td>{order.notes}</td>
         </tr>
@@ -55,6 +56,7 @@ class TodaysOrders extends React.Component {
               <th scope="col">Last</th>
               <th scope="col">Phone number</th>
               <th scope="col">Email</th>
+              <th scope="col">Type</th>
               <th scope="col">Status</th>
               <th scope="col">Notes</th>
             </tr>
