@@ -46,7 +46,7 @@ class TodaysOrders extends React.Component {
   render() {
     let emptyRow = (
       <tr>
-        <td colSpan="10">{this.state.status}</td>
+        <td colSpan="11">{this.state.status}</td>
       </tr>
     );
     let ordersRows = this.getOrderRows();
