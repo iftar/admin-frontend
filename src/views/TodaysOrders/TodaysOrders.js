@@ -6,7 +6,9 @@ class TodaysOrders extends React.Component {
     super();
     this.orderService = new OrderService();
     this.state = {
-      orders: []
+      orders: [],
+      last_updated: null,
+      status: "Loading...",
     };
     this.getTodaysOrders();
   }
@@ -14,7 +16,9 @@ class TodaysOrders extends React.Component {
   getTodaysOrders() {
     return this.orderService.getTodaysOrders().then( result => {
       this.setState(() => ({
-        orders: result.data.data.orders
+        orders: result.data.data.orders,
+        last_updated: result.data.data.last_updated,
+        status: result.data.data.orders.length ? "Loaded" : "No orders yet",
       }));
     });
   }
@@ -40,10 +44,17 @@ class TodaysOrders extends React.Component {
   }
 
   render() {
+    let emptyRow = (
+      <tr>
+        <td colSpan="10">{this.state.status}</td>
+      </tr>
+    );
     let ordersRows = this.getOrderRows();
+    let rows = ordersRows.length ? ordersRows : emptyRow;
 
     return (<div className="TodaysOrders">
       <h1>Today's orders</h1>
+      <p>{this.state.last_updated ? `Last updated at ${this.state.last_updated}` : this.state.status}</p>
       <div className="table-responsive">
         <table className="table table-striped table-bordered">
           <thead>
@@ -62,7 +73,7 @@ class TodaysOrders extends React.Component {
             </tr>
           </thead>
           <tbody>
-            {ordersRows}
+            {rows}
           </tbody>
         </table>
       </div>
